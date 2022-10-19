@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:fragment="myHeader">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Shopping list App</title>
+        <link rel="stylesheet" href="/css/reset-css.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
+    </head>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-nav rounded" th:fragment="myNav">
+    <a class="nav-link text-white active h5" th:href="@{/index}">Shopping List App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+        <ul class="navbar-nav row">
+
+            <th:block th:if="${@loggedUser.id == null}">
+                <li class="nav-item">
+                    <a class="nav-link text-white active h5" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white active h5" th:href="@{/register}">Register</a>
+                </li>
+            </th:block>
+
+            <th:block th:if="${@loggedUser.id != null}">
+                <li class="nav-item active">
+                    <a class="nav-link text-white active h5" th:href="@{/home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white active h5" th:href="@{/products/add}">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white active h5" th:href="@{/logout}">Logout</a>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</nav>
+
+<footer class="footer bg-transparent  py-2" th:fragment="myFooter">
+    <div class="container-fluid text-center">
+        <div class="footer-background h5 text-white">
+            &copy; Spring team 2021. All rights reserved.
+        </div>
+    </div>
+</footer>
+</body>
+</html>
